@@ -13,7 +13,16 @@ class MoviesController < ApplicationController
     else
       @ratings_to_show = []
     end
+    
     @movies = Movie.with_ratings(@ratings_to_show)
+    
+    @title_class = ''
+    @sort_by = params[:sort_by]
+    if @sort_by == "title"
+      @movies = @movies.order(params[:sort_by])
+      @title_class = "hilite bg-warning"
+    end
+      
   end
 
   def new
