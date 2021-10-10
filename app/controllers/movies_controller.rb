@@ -16,11 +16,13 @@ class MoviesController < ApplicationController
     
     @movies = Movie.with_ratings(@ratings_to_show)
     
-    @title_class = ''
     @sort_by = params[:sort_by]
     if @sort_by == "title"
       @movies = @movies.order(params[:sort_by])
       @title_class = "hilite bg-warning"
+    elsif @sort_by == "release_date"
+      @movies = @movies.order(params[:sort_by])
+      @release_date_class = "hilite bg-warning"
     end
       
   end
